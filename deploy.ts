@@ -9,7 +9,14 @@ function run(command: string) {
 function cleanBuildBranch() {
     const cwd = resolve(".");
     const entries = readdirSync(cwd);
-    const protected_entries = [".git", ".gitignore", ".svelte-kit", ".vscode", "node_modules", "build"];
+    const protected_entries = [
+        ".git",
+        ".gitignore",
+        ".svelte-kit",
+        ".vscode",
+        "node_modules",
+        "build"
+    ];
 
     for (const i of entries) {
         if (!protected_entries.includes(i)) {
@@ -54,6 +61,8 @@ function getDateTime() {
         .replace(",", "")
         .replace(" at", "");
 }
+
+run("npm run build");
 
 try {
     run("git switch build");
