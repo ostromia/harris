@@ -118,7 +118,7 @@
         },
         {
             name: "Run",
-            items: [{ name: "Interpret Python Code", action: run_interpret_python_code }]
+            action: run_interpret_python_code
         }
     ]}
 />

@@ -10,7 +10,10 @@
     }
 
     interface Props {
-        menubar: { name: string; items: { name: string; action: () => void }[] }[];
+        menubar: (
+            | { name: string; items: { name: string; action: () => void }[] }
+            | { name: string; action: () => void }
+        )[];
     }
     const { menubar }: Props = $props();
 </script>
@@ -19,21 +22,29 @@
 
 <nav>
     {#each menubar as menu}
-        <div class="wrapper-nav-button">
-            <button class="nav-button">
-                {menu.name}
-            </button>
+        {#if "action" in menu}
+            <div class="wrapper-nav-button">
+                <button class="nav-button" onclick={menu.action}>
+                    {menu.name}
+                </button>
+            </div>
+        {:else}
+            <div class="wrapper-nav-button">
+                <button class="nav-button">
+                    {menu.name}
+                </button>
 
-            {#if $showDropdown === menu.name}
-                <div class="nav-dropdown">
-                    {#each menu.items as menuitem}
-                        <button onclick={menuitem.action}>
-                            {menuitem.name}
-                        </button>
-                    {/each}
-                </div>
-            {/if}
-        </div>
+                {#if $showDropdown === menu.name}
+                    <div class="nav-dropdown">
+                        {#each menu.items as menuitem}
+                            <button onclick={menuitem.action}>
+                                {menuitem.name}
+                            </button>
+                        {/each}
+                    </div>
+                {/if}
+            </div>
+        {/if}
     {/each}
 </nav>
 
