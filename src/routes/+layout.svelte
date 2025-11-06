@@ -9,6 +9,12 @@
 
 <style lang="scss">
     @use "@fontsource/atkinson-hyperlegible/index.css";
+    @use "$lib/styles/colors";
+
+    :global(html),
+    :global(body) {
+        background-color: colors.$background;
+    }
 
     :global(body) {
         margin: 0;
