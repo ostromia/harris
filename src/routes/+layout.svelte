@@ -14,6 +14,7 @@
     @use "@fontsource/atkinson-hyperlegible/index.css";
 
     :global(body) {
+        margin: 0;
         font-family: "Atkinson Hyperlegible", sans-serif;
     }
 </style>
