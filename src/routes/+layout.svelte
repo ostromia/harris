@@ -9,3 +9,11 @@
 </svelte:head>
 
 {@render children()}
+
+<style lang="scss">
+    @use "@fontsource/atkinson-hyperlegible/index.css";
+
+    :global(body) {
+        font-family: "Atkinson Hyperlegible", sans-serif;
+    }
+</style>
