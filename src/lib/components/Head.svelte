@@ -1,7 +1,7 @@
 <script lang="ts">
     import { VERSION } from "svelte/compiler";
 
-    import favicon from "$lib/assets/favicon.svg";
+    import favicon from "$lib/assets/favicon.png";
 
     const title = "Harris";
     const description = "Static Client Side Python Interpreter Built Using SvelteKit and Pyodide";
@@ -19,7 +19,7 @@
     <meta name="description" content={description} />
 
     <!-- Favicon -->
-    <link rel="icon" href={favicon} />
+    <link rel="image/png" href={favicon} />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonical} />
