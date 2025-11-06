@@ -1,10 +1,14 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import Nav from "$lib/components/Nav.svelte";
     import CodeMirror from "$lib/components/CodeMirror.svelte";
     import { python as pythonLanguageSupport } from "@codemirror/lang-python";
+    import { loadPyodide } from "pyodide";
+    import type { PyodideInterface } from "pyodide";
 
     let editor = $state() as CodeMirror;
     let console = $state() as CodeMirror;
+    let pyodide: PyodideInterface;
 
     function file_new() {
         if (editor.getText().trim()) {
@@ -92,8 +96,25 @@
     }
 
     async function run_interpret_python_code() {
-        console.setText(editor.getText());
+        let output;
+
+        try {
+            await pyodide.runPythonAsync(`${editor.getText()}`);
+            output = pyodide.runPython("sys.stdout.getvalue()");
+            pyodide.runPython("sys.stdout = io.StringIO()");
+        } catch (e) {
+            if (e instanceof Error) {
+                output = e.toString();
+            }
+        }
+
+        console.setText(output);
     }
+
+    onMount(async () => {
+        pyodide = await loadPyodide();
+        await pyodide.runPythonAsync(`import io\nimport sys\nsys.stdout = io.StringIO()`);
+    });
 </script>
 
 <Nav
