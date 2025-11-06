@@ -13,10 +13,13 @@
 
     :global(html),
     :global(body) {
+        height: 100%;
         background-color: colors.$background;
     }
 
     :global(body) {
+        display: grid;
+        grid-template-rows: auto 1fr;
         margin: 0;
         font-family: "Atkinson Hyperlegible", sans-serif;
     }
