@@ -3,9 +3,9 @@
 
     import favicon from "$lib/assets/favicon.png";
 
-    const title = "Harris";
-    const description = "Static Client Side Python Interpreter Built Using SvelteKit and Pyodide";
-    const canonical = "https://ostromia.github.io/harris/";
+    const title = "";
+    const description = "";
+    const canonical = "";
 </script>
 
 <svelte:head>
